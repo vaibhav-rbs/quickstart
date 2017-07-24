@@ -8,4 +8,9 @@ import {HEROES} from './mock-heroes';
         getHeroes():  Promise<Hero[]> {
     return Promise.resolve(HEROES);
         }
+        getHerosSlowly(): Promise<Hero[]> {
+            return new Promise(resolve => {
+                setTimeout(() => resolve(this.getHeroes()), 2000);
+            });
+        }
     }
