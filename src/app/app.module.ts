@@ -1,8 +1,10 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent }  from './app.component';
+import { HeroesComponent } from './heroes.component';
+import { HeroService } from './hero.service';
 import { HeroDetailComponent } from './hero-detail.component';
 
 @NgModule({
@@ -10,11 +12,13 @@ import { HeroDetailComponent } from './hero-detail.component';
     BrowserModule,
     FormsModule
      ],
-  declarations: [ 
+  declarations: [
     AppComponent,
+    HeroesComponent,
     HeroDetailComponent
      ],
-  bootstrap: [ 
+  providers: [HeroService],
+  bootstrap: [
     AppComponent
      ]
 })
