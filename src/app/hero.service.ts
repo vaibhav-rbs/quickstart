@@ -8,6 +8,8 @@ import { Hero } from './hero';
 @Injectable()
     export class HeroService {
         private heroesUrl = 'api/heroes';
+        private headers = new Headers({'Content-Type': 'application/json'});
+
         constructor(private http: Http) { }
 
         getHeroes():  Promise<Hero[]> {
@@ -32,4 +34,13 @@ import { Hero } from './hero';
             console.error('An error occurred', error);
             return Promise.reject(error.message || error);
         }
+        update(hero: Hero): Promise<Hero> {
+            const url = `${this.heroesUrl}/${hero.id}`;
+            return this.http
+            .put(url, JSON.stringify(hero), {headers: this.headers})
+            .toPromise()
+            .then(() => hero)
+            .catch(this.handleError);
+        }
+
 }
